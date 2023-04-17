@@ -22,3 +22,4 @@ Route::resource('organization.job', OrganizationJobController::class);
 Route::get('/organization/{organization}/job', [OrganizationJobController::class, 'jobByOrganizationName'])->name('jobByOrganizationName');
 // Route::get('/job/create', [OrganizationController::class, 'jobByOrganizationName'])->name('jobByOrganizationName');
 // Route::get('/organization/{organization}', [OrganizationController::class, 'jobByOrganizationName'])->name('jobByOrganizationName');
+Route::get('/', [JobController::class, 'index']);

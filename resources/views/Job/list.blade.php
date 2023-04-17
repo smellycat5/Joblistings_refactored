@@ -8,8 +8,8 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="my-5">Job listing by organization</h1>
-      <a class="btn btn-primary mb-4" href="{{ route('job.index')}}">back</a>
+      <h1 class="my-5" name='organization_id'>Job listing by <b>{{ $organization ->name}}</b> organization</h1>
+      <a class="btn btn-primary mb-4" href="{{ route('organization.index')}}">back</a>
       <a href="{{ route('organization.create') }}" class="btn btn-primary mb-4">Create Organization</a>
     </div>
     <table class="table">
@@ -29,9 +29,16 @@
           <td>{{ $job->description }}</td>
           <td>{{ $job->salary }}</td>
           <td>{{ $job->location }}</td>
+          <form action="{{ route('organization.job.destroy', [$job->organization_id, $job->id])}}" method="POST" class="p-4 bg-light">
+             
           <td>
-            <a href="{{ route('job.show', [$job->id]) }}" class="btn btn-success">Apply</a>
+            <a href="{{ route('job.show', [$job->id]) }}" class="btn btn-success">Apply</a></td>
+            <td>
             <a href="{{ route('job.edit', [$job->id]) }}" class="btn btn-success">Edit</a></td>
+            @csrf
+            @method('DELETE')
+            <td><button type="submit" class="btn btn-danger">Delete</button></td>
+            </form>
         </tr>
       @endforeach
     </tbody>

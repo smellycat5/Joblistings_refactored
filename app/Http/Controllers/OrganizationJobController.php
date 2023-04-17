@@ -62,14 +62,17 @@ class OrganizationJobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OrganizationJob $organizationJob)
+    public function destroy($id, Job $job)
     {
-        //
+        $job->delete();
+        return redirect()->route('jobByOrganizationName',$id)->with('deleted');
     }
 
     public function jobByOrganizationName($id)
     {
+        $organization = Organization::findorfail($id);
+        
         $jobs = Job::where('organization_id',$id)->get();
-        return view('Job.list', compact('jobs'));
+        return view('Job.list', compact(['jobs', 'organization']));
     }
 }

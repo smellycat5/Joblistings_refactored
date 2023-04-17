@@ -29,8 +29,8 @@
             <td>{{ $organization->name }}</td>
             <td>{{ $organization->location }}</td>
             <td>{{ $organization->job_count}}</td>
-            <td>
-              <a href="{{ route('jobByOrganizationName',$organization->id) }}" class="btn btn-success">View Jobs</a>
+            <td><a href="{{ route('jobByOrganizationName',$organization->id) }}" class="btn btn-success">View Jobs</a></td>
+            <td><a href="{{ route('organization.edit', $organization->id) }}" class="btn btn-success">Edit</a></td>
           </tr>
           @empty
           <td> no users</td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Models\Organization;
 use App\Http\Requests\JobRequest;
+use App\Http\Requests\JobEditRequest;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -58,7 +59,7 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(JobRequest $request, Job $job)
+    public function update(JobEditRequest $request, Job $job)
     {
         $validatedjob = $request->validated();
         $job->update($validatedjob);
@@ -71,7 +72,8 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        return 1;
+        $job->delete();
+        return redirect()->route('job.index')->with('deleted');
     }
      
 }

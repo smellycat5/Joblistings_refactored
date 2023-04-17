@@ -8,28 +8,28 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="my-5">Create Organization</h1>
-      <a class="btn btn-primary" href="{{ route('job.index')}}">back</a>
-      <form action="{{ route('organization.store')}}" method="POST" class="p-4 bg-light">
+      <h1 class="my-5">Edit Organization info</h1>
+      <a class="btn btn-primary" href="{{ route('organization.index')}}">back</a>
+      <form action="{{ route('organization.update', $organization->id)}}" method="POST" class="p-4 bg-light">
         <!-- CSRF token field -->
       @csrf
+      @method('PUT')
         <div class="form-group">
-          <label for="name">Organization Name</label>
-          <input type="text" id="name" name="name" class="form-control">
-          @if ($errors->has('name'))
-          <span class="text-danger">{{ $errors->first('name') }}</span>
-          @endif
+          <label for="name">Organization name</label>
+          <input type="text" id="title" name="name" class="form-control" value="{{$organization -> name}}">
+          @if ($errors->has('title'))
+          <span class="text-danger">{{ $errors->first('title') }}</span>
+      @endif
         </div>
-      
         <div class="form-group">
           <label for="location">Location</label>
-          <input type="text" id="location" name="location" class="form-control">
+          <input type="text" id="location" name="location" class="form-control" value="{{$organization -> location}}">
           @if ($errors->has('location'))
           <span class="text-danger">{{ $errors->first('location') }}</span>
       @endif
         </div>
-      
-        <button type="submit" class="btn btn-primary">Create Organization</button>
+
+        <button type="submit" class="btn btn-primary">Edit confirm</button>
       </div>
       </form>
     

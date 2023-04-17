@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organization;
 use App\Http\Requests\OrganizationRequest;
+use App\Http\Requests\OrganizationEditRequest;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -49,15 +50,17 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
-        //
+        return view('Organization.edit',compact('organization'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Organization $organization)
+    public function update(OrganizationEditRequest $request, Organization $organization)
     {
-        //
+        $validatedorganization = $request-> validated();
+        $organization->update($validatedorganization);
+        return redirect()->route('organization.index');
     }
 
     /**
