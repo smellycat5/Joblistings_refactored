@@ -11,7 +11,8 @@ class Organization extends Model
 
     protected $fillable =[
         'name',
-        'location'
+        'location',
+        'email'
     ];
 
     public function job()

@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('job', function (Blueprint $table) {
-            $table->foreignId('organization_id')->nullable()->constrained()->after('location');
+            $table->foreignId('organization_id')->after('location')->nullable()->constrained();
         });
+        
     }
 
     /**

@@ -6,17 +6,25 @@ use App\Models\Job;
 use App\Models\Organization;
 use App\Http\Requests\JobRequest;
 use App\Http\Requests\JobEditRequest;
+use App\Services\JobService;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
+    Protected JobService $jobService;
+
+    public function __construct(Jobservice $jobService)
+    {
+        $this->jobService =$jobService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        
         $jobs = Job::with('organization')->get();
-        return view('welcome', compact('jobs'));
+        return view('Job.jobIndex', compact('jobs'));
     }
 
     /**
@@ -75,5 +83,8 @@ class JobController extends Controller
         $job->delete();
         return redirect()->route('job.index')->with('deleted');
     }
-     
+
+    public function loginPage(){
+        return view('Job.login');
+    }
 }

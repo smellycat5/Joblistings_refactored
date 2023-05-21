@@ -7,16 +7,25 @@ use App\Http\Requests\OrganizationRequest;
 use App\Http\Requests\OrganizationEditRequest;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use App\Services\OrganizationService;
 
 class OrganizationController extends Controller
 {
+    Protected OrganizationService $organizationService;
+
+    Public function __construct(OrganizationService $organizationService)
+    {
+        $this->organizationService = $organizationService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $organizations = Organization::withCount('job')->get();
-        return view('Organization.index', compact('organizations'));
+        $data = $this->organizationService->viewOrganizations();
+        // $organizations = Organization::with('job')->get();
+        return view('Organization.index', compact('data'));
     }
 
     /**

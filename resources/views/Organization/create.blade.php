@@ -28,6 +28,13 @@
           <span class="text-danger">{{ $errors->first('location') }}</span>
       @endif
         </div>
+        <div class="form-group">
+          <label for="location">Email</label>
+          <input type="email" id="email" name="email" class="form-control">
+          @if ($errors->has('location'))
+          <span class="text-danger">{{ $errors->first('email') }}</span>
+      @endif
+        </div>
       
         <button type="submit" class="btn btn-primary">Create Organization</button>
       </div>

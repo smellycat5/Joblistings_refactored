@@ -24,6 +24,7 @@ class OrganizationRequest extends FormRequest
         return [
                 'name'=> 'required',
                 'location'=> 'required',
+                'email'=> 'required'
         ];
     }
 }

@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Create Job</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="my-5">Create Job</h1>
-      <a class="btn btn-primary" href="{{ route('job.index') }}">back</a>
+@extends('components.layout')
+@section('content')
+<div class="card-front">
+  <a class="btn btn-primary" href="{{ route('job.index') }}">back</a>
+  <div class="center-wrap">
+    <div class="section text-center">
+
+  <h1 class="mb-3 pb-3"> Create Job</h1>
+     
       <form action="{{ route('job.store') }}" method="POST" class="p-4 bg-light">
         <!-- CSRF token field -->
         @csrf
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="title">Job Title</label>
           <input type="text" id="title" name="title" class="form-control">
           @if ($errors->has('title'))
@@ -21,7 +18,7 @@
             @endif
         </div>
       
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="description">Job Description</label>
           <textarea id="description" name="description" class="form-control"></textarea>
           @if ($errors->has('description'))
@@ -29,7 +26,7 @@
           @endif
         </div>
       
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="salary">Salary</label>
           
           <input type="number" id="salary" name="salary" class="form-control">
@@ -38,14 +35,14 @@
           @endif
         </div>
       
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="location">Location</label>
           <input type="text" id="location" name="location" class="form-control">
           @if ($errors->has('location'))
           <span class="text-danger">{{ $errors->first('location') }}</span>
             @endif
         </div>
-        <div class="form-row align-items-center">
+        <div class="form-group mt-2">
           <div class="col-auto my-1">
             <label class="mr-sm-2" for="inlineFormCustomSelect">Organizations</label>
             <select name="organization_id" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -55,13 +52,10 @@
              @endforeach
             </select>
           </div>
-        <button type="submit" class="btn btn-primary">Create Job</button>
+          <button type="submit" class="btn mt-4" name="send">Register</button>
         </div>
       </form>
-    
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
-</html>
+    </div>
+  </div>
+</div>
+@endsection

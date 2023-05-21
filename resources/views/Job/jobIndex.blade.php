@@ -31,9 +31,14 @@
             <td>{{ $job->salary }}</td>
             <td>{{ $job->location }}</td>
             <td>{{ $job->organization->name ?? ""}}</td>
+            <form action="{{ route('job.destroy', $job->id)}}" method="POST" class="p-4 bg-light">
+             
             <td><a href="{{ route('job.show', [$job->id]) }}" class="btn btn-success">Apply</a></td>
             <td><a href="{{ route('job.edit', [$job->id]) }}" class="btn btn-success">Edit</a></td>
-            <td><a href="{{ route('job.destroy', [$job->id]) }}" class="btn btn-success">Delete</a></td>
+            @csrf
+            @method('DELETE')
+            <td><button type="submit" class="btn btn-danger">Delete</button></td>
+            </form>
           </tr>
         @endforeach
       </tbody>

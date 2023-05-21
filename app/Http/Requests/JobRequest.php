@@ -34,9 +34,9 @@ class JobRequest extends FormRequest
     {
         return [
                 'title.required'=> ' Job turtle is required',
-                'description'=> 'job description is required required',
-                'salary'=>'required|integer',
-                'location'=>'required',
+                'description'=> 'job description is required',
+                'salary'=>'invalid salary',
+                'location'=>'job location is required',
         ];
     }
 }

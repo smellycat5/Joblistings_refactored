@@ -1,54 +1,116 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Job Listings</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="my-5">Job Listings</h1>
-      <a href="{{ route('job.create') }}" class="btn btn-primary mb-4">Create Job</a>
-      <a href="{{ route('organization.create') }}" class="btn btn-primary mb-4">Create Organization</a>
-      <a href="{{ route('organization.index') }}" class="btn btn-primary mb-4">Organization List</a>
-    </div>
-      <table class="table">
-      <thead>
-        <tr>
-          <th>Job Title</th>
-          <th>Job Description</th>
-          <th>Salary</th>
-          <th>Location</th>
-          <th>Orgaznization</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($jobs as $job)
-          <tr>
-            <td>{{ $job->title }}</td>
-            <td>{{ $job->description }}</td>
-            <td>{{ $job->salary }}</td>
-            <td>{{ $job->location }}</td>
-            <td>{{ $job->organization->name ?? ""}}</td>
-            <form action="{{ route('job.destroy', $job->id)}}" method="POST" class="p-4 bg-light">
-             
-            <td><a href="{{ route('job.show', [$job->id]) }}" class="btn btn-success">Apply</a></td>
-            <td><a href="{{ route('job.edit', [$job->id]) }}" class="btn btn-success">Edit</a></td>
-            @csrf
-            @method('DELETE')
-            <td><button type="submit" class="btn btn-danger">Delete</button></td>
-            </form>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div>
+<html lang="en">
+<!doctype html>
+<html lang="en">
 
-    </script>
+<head>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #1f2029;
+        }
+    
+        a {
+            position: relative;
+            padding: 20px 50px;
+            display: block;
+            text-decoration: none;
+            text-transform: uppercase;
+            width: 200px;
+            overflow: hidden;
+            border-radius: 40px;
+        }
+    
+        a span {
+            position: relative;
+            color: #000;
+            font-size: 15px;
+            font-family:  'Poppins', sans-serif;
+            letter-spacing: 1px;
+            z-index: 1;
+            font-weight: bold;
+        }
+    
+        a .liquid {
+            position: absolute;
+            top: -50px;
+            left: 0px;
+            width: 200px;
+            height: 200px;
+            background: #ffeba7;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
+            transition: 1s;
+        }
+    
+        a .liquid::after,
+        a .liquid::before {
+            content: '';
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -75%);
+            background: #2b2e38;
+        }
+    
+        a .liquid::before {
+    
+            border-radius: 45%;
+            background: #2b2e38;
+            animation: animate 5s linear infinite;
+        }
+    
+        a .liquid::after {
+    
+            border-radius: 40%;
+            background: rgba(20, 20, 20, .5);
+            animation: animate 10s linear infinite;
+        }
+    
+        a:hover .liquid {
+            top: -105px;
+        }
+    
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -75%) rotate(0deg);
+            }
+    
+            100% {
+                transform: translate(-50%, -75%) rotate(360deg);
+            }
+        }
+    </style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+</head>
+
+<body>
+    <ul>
+        <a href="{{ route('user.login')}}">
+            <span>search job</span>
+            <div class="liquid"></div>
+        </a>
+    </ul>
+    <ul>
+      <a href="#">
+          <span>add job to List</span>
+          <div class="liquid"></div>
+      </a>
+  </ul>
+</body>
+
 </html>
