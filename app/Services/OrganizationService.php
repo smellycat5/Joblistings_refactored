@@ -8,7 +8,23 @@ class OrganizationService
 {
     public function viewOrganizations()
     {
-        $organizations = Organization::with('job')->get();
+        $organizations = Organization::withCount('job')->get();
         return $organizations;
+    }
+
+    public function storeOrganization($validated)
+    {
+        $data = Organization::create($validated);
+        return $data;
+    }
+
+    public function editOrganization($validatedOrganization, $id)
+    {
+        $id->update($validatedOrganization);
+    }
+    
+    public function deleteOrganization($organization)
+    {    
+        $organization->destroy($organization->id);
     }
 }

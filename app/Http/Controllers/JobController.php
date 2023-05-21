@@ -22,7 +22,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        
+
         $jobs = Job::with('organization')->get();
         return view('Job.jobIndex', compact('jobs'));
     }
@@ -80,7 +80,9 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        $job->delete();
+        // $job->delete();
+        // dd($job);
+        $this->jobService->deleteJob($job); 
         return redirect()->route('job.index')->with('deleted');
     }
 

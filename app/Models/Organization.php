@@ -19,9 +19,4 @@ class Organization extends Model
     {
         return $this->hasMany(Job::class);
     }
-    
-    public function organization()
-    {
-        return $this->belongsTo(Organization::class);
-    }
 }

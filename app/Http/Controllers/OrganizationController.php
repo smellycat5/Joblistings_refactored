@@ -42,7 +42,7 @@ class OrganizationController extends Controller
     public function store(OrganizationRequest $request)
     {
         $validated = $request-> validated();
-        Organization::create($validated);
+        $this->organizationService->storeOrganization($validated);     
         return redirect()->route('organization.index');
     }
 
@@ -68,7 +68,7 @@ class OrganizationController extends Controller
     public function update(OrganizationEditRequest $request, Organization $organization)
     {
         $validatedorganization = $request-> validated();
-        $organization->update($validatedorganization);
+        $this->organizationService->editOrganization($validatedorganization, $organization);
         return redirect()->route('organization.index');
     }
 
@@ -77,6 +77,8 @@ class OrganizationController extends Controller
      */
     public function destroy(Organization $organization)
     {
-        //
+        // dd($organization);
+        $this->organizationService->deleteOrganization($organization);
+        return redirect()->route('organization.index');
     }
 }
