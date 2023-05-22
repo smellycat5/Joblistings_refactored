@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job', function (Blueprint $table) {
+        Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->text('title');
             $table->longText('description');
             $table->integer('salary');
             $table->string('location');
             $table->timestamps();
+            $table->foreignId('organization_id')->constrained()->onDelete('cascade');
         });
     }
 

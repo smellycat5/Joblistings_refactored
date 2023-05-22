@@ -9,7 +9,7 @@ class Job extends Model
 {
     use HasFactory;
 
-    protected $table="job";
+    // protected $table="job";
     
     protected $fillable =[
         'title',
