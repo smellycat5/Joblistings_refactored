@@ -77,7 +77,6 @@ class OrganizationController extends Controller
      */
     public function destroy(Organization $organization)
     {
-        // dd($organization);
         $this->organizationService->deleteOrganization($organization);
         return redirect()->route('organization.index');
     }

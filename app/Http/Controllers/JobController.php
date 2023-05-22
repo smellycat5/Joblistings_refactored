@@ -23,7 +23,7 @@ class JobController extends Controller
     public function index()
     {
 
-        $jobs = Job::with('organization')->get();
+        $jobs = $this->jobService->showJobs();
         return view('Job.jobIndex', compact('jobs'));
     }
 
@@ -42,7 +42,8 @@ class JobController extends Controller
     public function store(JobRequest $request)
     {
         $validated = $request->validated();
-        Job::create($validated);
+        $this->jobService->storeJob($validated);
+        // Job::create($validated);
         return redirect()->route('job.index');
         // return $validated;
     }
@@ -69,9 +70,8 @@ class JobController extends Controller
      */
     public function update(JobEditRequest $request, Job $job)
     {
-        $validatedjob = $request->validated();
-        $job->update($validatedjob);
-        
+        $validatedEditJob = $request->validated();
+        $this->jobService->editJob($validatedEditJob, $job);        
         return redirect()->route('job.index')->with('success');
     }
 
