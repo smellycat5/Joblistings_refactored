@@ -51,7 +51,12 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
-        //
+        // dd($organization);
+        // $validated = $request->validated();
+        $data = Organization::find($organization->id);
+        // $data = $this->organizationService->showOrganization($organization);
+        // dd($data);
+        return view('Organization.show', compact('data'));
     }
 
     /**

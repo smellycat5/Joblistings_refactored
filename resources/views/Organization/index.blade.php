@@ -39,6 +39,8 @@
                         <td><a href="{{ route('organization.edit', $organization->id) }}"
                                 class="btn btn-success">Edit</a>
                         </td>
+                        <td><a href="{{ route('organization.show', $organization->id) }}"
+                            class="btn btn-success">Details</a></td>
                         @csrf
                         @method('DELETE')
                         <td><button type="submit" class="btn btn-danger">Delete</button></td>

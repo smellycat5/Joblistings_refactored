@@ -23,6 +23,13 @@ class OrganizationService
         $id->update($validatedOrganization);
     }
     
+    public function showOrganization($id)
+    {
+        // dd($id);
+        $organization = Organization::find($id);
+        // dd($organization);
+        return $organization;
+    }
     public function deleteOrganization($organization)
     {    
         $organization->destroy($organization->id);
