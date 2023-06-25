@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use UserService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class LoginAction extends Controller
@@ -25,5 +25,6 @@ class LoginAction extends Controller
     {
         $validatedUser = $request->validated();
         $results = $this->userService->login($validatedUser);
+        return redirect()->route('welcome');
     }
 }

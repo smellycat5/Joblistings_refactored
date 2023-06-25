@@ -26,7 +26,7 @@ class UserService
         $user = $this->getUserWithCreds($validatedUserCreds);
         $token = $user->createToken('auth_token');
         $result = [
-            'user' => new UserResource($user->load('roles')),
+            'user' => new UserResource($user),
             'access_token' => $token->plainTextToken,
             'token_type' => 'Bearer',
         ];
